@@ -2,18 +2,24 @@ PATH
   remote: .
   specs:
     fly_scaler (0.1.0)
+      httparty
 
 GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     json (2.7.1)
     language_server-protocol (3.17.0.3)
     lint_roller (1.1.0)
+    mini_mime (1.1.5)
     minitest (5.21.1)
     mocktail (2.0.0)
       sorbet-eraser (~> 0.3.1)
       sorbet-runtime (~> 0.5.9204)
+    multi_xml (0.6.0)
     parallel (1.24.0)
     parser (3.3.0.4)
       ast (~> 2.4.1)

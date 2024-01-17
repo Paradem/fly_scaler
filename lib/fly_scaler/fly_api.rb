@@ -1,3 +1,5 @@
+require "httparty"
+
 module FlyScaler
   class FlyApi
     Machine = Data.define(:id, :state, :group)
