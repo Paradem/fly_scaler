@@ -1,17 +1,17 @@
 require "test_helper"
 
 module FlyScaler
-  class ScalerTest < ActiveSupport::TestCase
-    setup do
+  class TestScaler < Minitest::Test
+    def setup
       @fly = Mocktail.of(FlyApi)
     end
 
-    test "#scaleable?" do
+    def test_scaleable
       scaler = Scaler.new(fly: @fly)
       assert_not scaler.scaleable?
     end
 
-    test "#up" do
+    def test_up
       stubs { @fly.running_machines }.with { 1 }
       stubs { @fly.total_machines }.with { 2 }
       stubs { |m| @fly.start_machine(m.any) }.with { true }
@@ -24,7 +24,7 @@ module FlyScaler
       verify { |m| @fly.start_machine(m.any) }
     end
 
-    test "#up too many machines" do
+    def test_up_too_many_machines
       stubs { @fly.running_machines }.with { 2 }
       stubs { @fly.total_machines }.with { 2 }
 
@@ -36,7 +36,7 @@ module FlyScaler
       assert_equal 0, Mocktail.calls(@fly, :start_machine).count
     end
 
-    test "#down" do
+    def test_down
       # I don't know how to test this as it is using a lot of coupling.
     end
   end
