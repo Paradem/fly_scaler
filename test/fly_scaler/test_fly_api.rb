@@ -4,13 +4,13 @@ module FlyScaler
   class TestFlyApi < Minitest::Test
     def setup
       @api = Mocktail.of(FlyApi::Api)
-      stubs { @api.machines }.with {
+      Mocktail.stubs { @api.machines }.with {
         [
           FlyApi::Machine.new("abbabba", "started", "job"),
           FlyApi::Machine.new("aaazzzddd", "stopped", "job")
         ]
       }
-      stubs { |m| @api.start_machine(m.any) }.with { true }
+      Mocktail.stubs { |m| @api.start_machine(m.any) }.with { true }
     end
 
     def test_machines
@@ -21,7 +21,7 @@ module FlyScaler
 
     def test_start_machine_that_doesnt_exist
       fly = FlyApi.new(api: @api)
-      assert_not fly.start_machine("asetasetaet")
+      assert !fly.start_machine("asetasetaet")
     end
 
     def test_start_machine_that_exists
