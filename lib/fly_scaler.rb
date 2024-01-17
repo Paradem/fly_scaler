@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative "fly_scaler/version"
 
 module FlyScaler
