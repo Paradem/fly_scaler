@@ -6,7 +6,7 @@ class Scaler
   end
 
   def scaleable?
-    Rails.env.production? || Rails.env.staging?
+    Rails.respond_to?(:env) && (Rails.env.production? || Rails.env.staging?)
   end
 
   def up
